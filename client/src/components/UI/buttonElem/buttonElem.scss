@@ -1,0 +1,24 @@
+.default-btn {
+    padding: 15px 20px;
+    background-color: #30336b;
+    border-radius: 11px;
+    color: #fff;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 23px;
+    border: none;
+    cursor: pointer;
+    transition: all .5s;
+    text-transform: capitalize;
+
+    &:hover {
+        background: #5256aa;
+    }
+}
+
+.delete {
+    background-color: #eb4d4b;
+    &:hover {
+        background: #f57876;
+    }
+}
