@@ -68,6 +68,31 @@ export const updateUserData = createAsyncThunk<IUser[], IUser, {rejectValue: str
     }
 )
 
+export const deleteUserData = createAsyncThunk<IUser[], number, {rejectValue: string, state: RootState}>(
+    'user/deleteUserData',
+    async (id: number, {rejectWithValue, getState}) => {
+        try {
+            const fetchDelete = await fetch(`${process.env.REACT_APP_SERVER_URL}/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+
+            if (fetchDelete.status !== 200) {
+                throw new Error('Error getting delete')
+            }
+
+            const data = getState().users
+            const newStateData = data.users.filter(user => user.id !== id)
+            return newStateData
+
+        } catch (e) {
+            console.log("Error getting delete: ", e)
+            return rejectWithValue('Error getting delete')
+        }
+    }
+)
 
 const setLoading = (state: UserInitialState) => {
     state.status = 'loading'
@@ -111,6 +136,10 @@ export const userSlice = createSlice({
         .addCase(updateUserData.pending, setLoading)
         .addCase(updateUserData.rejected, setRejected)
         .addCase(updateUserData.fulfilled, updateData)
+
+        .addCase(deleteUserData.pending, setLoading)
+        .addCase(deleteUserData.rejected, setRejected)
+        .addCase(deleteUserData.fulfilled, updateData)
     }
 })
 
