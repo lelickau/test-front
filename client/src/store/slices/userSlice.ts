@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { sortData } from "helpers/sortData"
+import { RootState } from "store"
 import { IUser } from "types/IUser"
 
 interface UserInitialState {
@@ -29,6 +30,40 @@ export const getUsersData = createAsyncThunk<any, void,{rejectValue: string}>(
         } catch (e) {
             console.log("Error getting users: ", e)
             return rejectWithValue('Error getting users')
+        }
+    }
+)
+
+export const updateUserData = createAsyncThunk<IUser[], IUser, {rejectValue: string, state: RootState}>(
+    'user/updateUserData',
+    async (query: IUser, {rejectWithValue, getState}) => {
+        try {
+            const userId = query.id
+            const fetchUpdata = await fetch(`${process.env.REACT_APP_SERVER_URL}/${userId}`, {
+                method: 'PUT',
+                body: JSON.stringify(query),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+
+            if (fetchUpdata.status !== 200) {
+                throw new Error('Error getting update')
+            }
+
+            const data = getState().users
+            const updateData = data.users.map(user => {
+                if (user.id === userId) {
+                    return query
+                } else {
+                    return user
+                }
+            })
+            return updateData
+
+        } catch (e) {
+            console.log("Error getting update: ", e)
+            return rejectWithValue('Error getting update')
         }
     }
 )
@@ -71,6 +106,10 @@ export const userSlice = createSlice({
         .addCase(getUsersData.pending, setLoading)
         .addCase(getUsersData.rejected, setRejected)
         .addCase(getUsersData.fulfilled, updateData)
+
+        .addCase(updateUserData.pending, setLoading)
+        .addCase(updateUserData.rejected, setRejected)
+        .addCase(updateUserData.fulfilled, updateData)
     }
 })
 
