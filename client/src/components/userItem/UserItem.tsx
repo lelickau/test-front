@@ -5,6 +5,8 @@ import { deleteUserData } from 'store/slices/userSlice'
 import { IUser } from 'types/IUser'
 import ButtonElem from 'components/UI/buttonElem/ButtonElem'
 
+import './userItem.scss'
+
 interface UserItemProps {
     userData: IUser;
 }
