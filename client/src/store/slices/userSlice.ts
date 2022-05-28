@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { IUser } from "types/IUser"
 
 interface UserInitialState {
@@ -13,14 +13,52 @@ const initialState: UserInitialState = {
     error: '',
 }
 
+export const getUsersData = createAsyncThunk<any, void,{rejectValue: string}>(
+    'user/getUsersData',
+    async (_, {rejectWithValue}) => {
+        try {
+            const fetchUsers = await fetch(`${process.env.REACT_APP_SERVER_URL}`)
+                .then(res => {
+                    if (res.status !== 200) throw new Error('Error getting users')
+                    return res.json()
+                })
+
+            return fetchUsers
+
+        } catch (e) {
+            console.log("Error getting users: ", e)
+            return rejectWithValue('Error getting users')
+        }
+    }
+)
+
+const setLoading = (state: UserInitialState) => {
+    state.status = 'loading'
+    state.error = ''
+}
+
+const setRejected = (state: UserInitialState, action: PayloadAction<string | undefined>) => {
+    state.status = 'rejected'
+    state.error = action.payload
+}
+
+const updateData = (state: UserInitialState, action: PayloadAction<IUser[]>) => {
+    state.status = 'fulfilled'
+    state.users = action.payload
+    state.error = ''
+}
+
 export const userSlice = createSlice({
     name: 'userSlice',
     initialState,
     reducers: {
 
     },
-    extraReducers: () => {
-
+    extraReducers: (builder) => {
+        builder
+        .addCase(getUsersData.pending, setLoading)
+        .addCase(getUsersData.rejected, setRejected)
+        .addCase(getUsersData.fulfilled, updateData)
     }
 })
 
