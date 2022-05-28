@@ -1,0 +1,84 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Leanne Graham",
+      "email": "Sincere@april.biz",
+      "age": "21",
+      "country": "Australia",
+      "phone": "6-770-736-8031"
+    },
+    {
+      "id": 2,
+      "name": "Laura Bauch",
+      "age": 33,
+      "country": "Russia",
+      "email": "Laura@yesenia.net",
+      "phone": "8-566-183-4447"
+    },
+    {
+      "id": 3,
+      "name": "Clementine Bauch",
+      "age": 33,
+      "country": "Russia",
+      "email": "Nathan@yesenia.net",
+      "phone": "8-463-123-4447"
+    },
+    {
+      "id": 4,
+      "name": "Patricia Lebsack",
+      "age": 19,
+      "country": "Australia",
+      "email": "Julianne.OConner@kory.org",
+      "phone": "6-493-170-9623"
+    },
+    {
+      "id": 5,
+      "name": "Chelsey Dietrich",
+      "age": 23,
+      "country": "Russia",
+      "email": "Lucio_Hettinger@annie.ca",
+      "phone": "8-254-954-1289"
+    },
+    {
+      "id": 6,
+      "name": "Mrs. Dennis Schulist",
+      "age": 49,
+      "country": "USA",
+      "email": "Karley_Dach@jasper.info",
+      "phone": "1-477-935-8478"
+    },
+    {
+      "id": 7,
+      "name": "Kurtis Weissnat",
+      "age": 59,
+      "country": "Russia",
+      "email": "Telly.Hoeger@billy.biz",
+      "phone": "8-210-067-6132"
+    },
+    {
+      "id": 8,
+      "name": "Nicholas Runolfsdottir V",
+      "age": 21,
+      "country": "Australia",
+      "email": "Sherwood@rosamond.me",
+      "phone": "6-586-493-6943"
+    },
+    {
+      "id": 9,
+      "name": "Glenna Reichert",
+      "age": 51,
+      "country": "USA",
+      "email": "Chaim_McDermott@dana.io",
+      "phone": "1-775-976-6794"
+    },
+    {
+      "id": 10,
+      "name": "Clementina DuBuque",
+      "age": 30,
+      "country": "Australia",
+      "email": "Rey.Padberg@karina.biz",
+      "phone": "6-024-648-3804"
+    }
+  ]
+}
