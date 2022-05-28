@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit"
+import { sortData } from "helpers/sortData"
 import { IUser } from "types/IUser"
 
 interface UserInitialState {
@@ -52,7 +53,18 @@ export const userSlice = createSlice({
     name: 'userSlice',
     initialState,
     reducers: {
-
+        sortUsers: (state, action) => {
+            switch (action.payload) {
+                case 'byName':
+                    sortData(state.users, 'name')
+                    break;
+                case 'byAll':
+                    sortData(state.users, 'id')
+                    break;
+                default:
+                    break;
+            }
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -62,5 +74,5 @@ export const userSlice = createSlice({
     }
 })
 
-export const {} = userSlice.actions
+export const {sortUsers} = userSlice.actions
 export default userSlice.reducer
