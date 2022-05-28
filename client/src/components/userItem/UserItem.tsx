@@ -1,19 +1,19 @@
 import React, { MouseEvent, FC } from 'react'
 import { useAppDispatch } from 'hooks/reduxHooks'
 import { Link } from 'react-router-dom'
+import { deleteUserData } from 'store/slices/userSlice'
 import { IUser } from 'types/IUser'
 import ButtonElem from 'components/UI/buttonElem/ButtonElem'
-
-import './userItem.scss'
 
 interface UserItemProps {
     userData: IUser;
 }
 
 const UserItem: FC<UserItemProps> = ({userData}) => {
+    const dispatch = useAppDispatch()
 
     const deleteUser = (e: MouseEvent<HTMLButtonElement>) => {
-
+        dispatch(deleteUserData(userData.id))
     }
 
     return (
