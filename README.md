@@ -2,9 +2,10 @@
 1. In the folder server (start the json-server): npm start
 2. In the folder client (start the react): npm start
 
-
+---
 #### Application structure
 
+```
 | public
 ----favicon.ico
 ----index.html
@@ -57,3 +58,4 @@
 tsconfig.json
 | server
 ----fixtures.json
+```
