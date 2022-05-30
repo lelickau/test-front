@@ -19,8 +19,8 @@ export const getUsersData = createAsyncThunk<any, void,{rejectValue: string}>(
     'user/getUsersData',
     async (_, {rejectWithValue}) => {
         try {
-            const fetchUsers = await fetch(`${process.env.REACT_APP_SERVER_URL}`)
-            const fetchUsers = await fetchUsers.json()
+            const res = await fetch(`${process.env.REACT_APP_SERVER_URL}`)
+            const fetchUsers = await res.json()
                 
             return fetchUsers
 
