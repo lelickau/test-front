@@ -20,11 +20,8 @@ export const getUsersData = createAsyncThunk<any, void,{rejectValue: string}>(
     async (_, {rejectWithValue}) => {
         try {
             const fetchUsers = await fetch(`${process.env.REACT_APP_SERVER_URL}`)
-                .then(res => {
-                    if (res.status !== 200) throw new Error('Error getting users')
-                    return res.json()
-                })
-
+            const fetchUsers = await fetchUsers.json()
+                
             return fetchUsers
 
         } catch (e) {
